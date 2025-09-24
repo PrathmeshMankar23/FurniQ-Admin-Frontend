@@ -9,6 +9,7 @@ export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [user, setUser] = useState({ name: 'Admin User', email: 'admin@furniq.com', role: 'admin' })
+  const [searchTerm, setSearchTerm] = useState('')
   const dropdownRef = useRef(null)
   const mobileMenuRef = useRef(null)
   const router = useRouter()
@@ -44,14 +45,20 @@ export default function Header() {
     router.push('/login')
   }
 
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      router.push(`/products?search=${encodeURIComponent(searchTerm.trim())}`)
+      setSearchTerm('')
+      setIsMobileMenuOpen(false)
+    }
+  }
+
   const navItems = [
     { name: 'Dashboard', href: '/', icon: '📊' },
     { name: 'Products', href: '/products', icon: '🛋️' },
     { name: 'Categories', href: '/categories', icon: '📂' },
     { name: 'Inventory', href: '/inventory', icon: '📦' },
-    { name: 'Customers', href: '/customers', icon: '👥' },
-    { name: 'Orders', href: '/orders', icon: '📝' },
-    { name: 'Reports', href: '/reports', icon: '📈' },
+    { name: 'User', href: '/user', icon: '👥' },
   ]
 
   return (
@@ -99,6 +106,26 @@ export default function Header() {
                   </li>
                 ))}
               </ul>
+
+              {/* Mobile search bar */}
+              <div className="mt-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                    placeholder="Search products..."
+                    className="w-full pl-8 pr-2 py-2 text-sm text-gray-900 placeholder-gray-500 bg-gray-100 border rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  />
+                  <button
+                    onClick={handleSearch}
+                    className="absolute left-1 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300"
+                  >
+                    <MagnifyingGlassIcon className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
@@ -111,17 +138,23 @@ export default function Header() {
             {navItems.find(item => item.href === pathname)?.name || 'Dashboard'}
           </h1>
 
-          {/* Search bar */}
+          {/* Desktop search bar */}
           <div className="hidden md:flex justify-center flex-1 lg:mr-32">
-            <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
-              <div className="absolute inset-y-0 flex items-center pl-2">
-                <MagnifyingGlassIcon className="w-4 h-4" />
-              </div>
+            <div className="relative w-full max-w-xl mr-6">
               <input
-                className="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md focus:bg-white focus:outline-none dark:bg-gray-700 dark:text-white"
                 type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 placeholder="Search for products, customers, orders..."
+                className="w-full pl-8 pr-10 py-2 text-sm text-gray-900 placeholder-gray-500 bg-gray-100 border-0 rounded-md focus:bg-white focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
               />
+              <button
+                onClick={handleSearch}
+                className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-600 dark:text-gray-300"
+              >
+                <MagnifyingGlassIcon className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
