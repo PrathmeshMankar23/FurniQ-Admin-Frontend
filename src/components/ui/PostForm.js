@@ -66,7 +66,7 @@ export default function UploadPost() {
   return (
     <div>
       <input type="file" onChange={handleFileChange} />
-      {preview && <img src={preview} alt="Preview" width={150} />}
+      {preview && <image src={preview} alt="Preview" width={150} />}
       <button onClick={handleUpload} disabled={isUploading}>
         {isUploading ? "Uploading..." : "Upload Image"}
       </button>

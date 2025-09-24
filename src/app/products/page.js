@@ -136,7 +136,7 @@ export default function Products() {
               <tbody>
                 {filteredProducts.map(p => (
                   <tr key={p.id}>
-                    <td className="px-6 py-4">{p.imageUrl && <img src={p.imageUrl} alt={p.name} className="w-12 h-12 rounded" />}</td>
+                    <td className="px-6 py-4">{p.imageUrl && <image src={p.imageUrl} alt={p.name} className="w-12 h-12 rounded" />}</td>
                     <td className="px-6 py-4">{p.name}</td>
                     <td className="px-6 py-4">{p.sku}</td>
                     <td className="px-6 py-4">{p.category}</td>

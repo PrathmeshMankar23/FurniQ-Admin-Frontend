@@ -313,7 +313,7 @@ export default function CategoryManagement() {
                   ) : (
                     <div className="flex justify-between items-center mb-3">
                       <div className="flex items-center space-x-3">
-                        {category.imageUrl && <img src={category.imageUrl} alt={category.name} className="w-12 h-12 object-cover rounded" />}
+                        {category.imageUrl && <image src={category.imageUrl} alt={category.name} className="w-12 h-12 object-cover rounded" />}
                         <h4 className="text-lg font-medium">{category.name}</h4>
                       </div>
                       <div className="flex space-x-2">
@@ -358,7 +358,7 @@ export default function CategoryManagement() {
                             ) : (
                               <>
                                 <div className="flex items-center space-x-2">
-                                  {sub.imageUrl && <img src={sub.imageUrl} alt={sub.name} className="w-8 h-8 object-cover rounded" />}
+                                  {sub.imageUrl && <image src={sub.imageUrl} alt={sub.name} className="w-8 h-8 object-cover rounded" />}
                                   <span>{sub.name}</span>
                                 </div>
                                 <div className="flex space-x-2">

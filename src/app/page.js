@@ -53,7 +53,7 @@ export default function Dashboard() {
                         <tr key={p.id}>
                           <td className="px-6 py-4">
                             {p.imageUrl ? (
-                              <img
+                              <image
                                 src={p.imageUrl}
                                 alt={p.name}
                                 className="w-12 h-12 rounded"
