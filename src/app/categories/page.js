@@ -20,7 +20,7 @@ export default function CategoryManagement() {
     const fetchCategories = async () => {
       try {
         setLoading(true)
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/categories`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`)
         if (response.ok) {
           const data = await response.json()
           
